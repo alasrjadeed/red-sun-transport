@@ -137,7 +137,7 @@ export default function HeroFleet() {
   return (
     <div className="hero-stage" aria-hidden="true">
       <div className="sky-glow" />
-      <img src="/logo-mark.png" alt="" className="hero-sun" />
+      <img src={`${import.meta.env.BASE_URL}logo-mark.png`} alt="" className="hero-sun" />
       <div className="cloud c1" />
       <div className="cloud c2" />
       <div className="cloud c3" />

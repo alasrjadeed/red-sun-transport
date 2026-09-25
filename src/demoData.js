@@ -1,4 +1,4 @@
-// Auto-generated demo snapshot — scrubbed of PII. Regenerate with gen script.
+// Auto-generated demo snapshot — PII scrubbed, secrets blanked, public business NAP kept real.
 export const DEMO = {
  "/api/dashboard": {
   "kpis": {
@@ -8051,11 +8051,11 @@ export const DEMO = {
   ]
  },
  "/api/company": {
-  "name": "Demo Name",
+  "name": "Red Sun Transport & Movers Packers",
   "tagline": "Commercial & household relocation across the Gulf",
   "years": 15,
-  "location": "Demo Location",
-  "phone": "+973 3935 0330",
+  "location": "Umm Al Hassam, Manama, Bahrain",
+  "phone": "+973 3935 0288",
   "hours": "24/7 commercial and household shifting",
   "coverage": [
    "Bahrain",
@@ -8065,7 +8065,83 @@ export const DEMO = {
    "UAE",
    "Saudi Arabia"
   ],
-  "email": "demo@redsuntransport.bh",
+  "email": "info@redsunbh.com",
   "website": ""
+ },
+ "/api/config": {
+  "ai": {
+   "enabled": false,
+   "keySet": false,
+   "provider": "openai",
+   "model": "gpt-4o-mini",
+   "base": "https://api.openai.com/v1/chat/completions",
+   "key": ""
+  },
+  "officePasswordSet": false,
+  "management": {
+   "managerName": "",
+   "managerPhone": ""
+  },
+  "settings": {
+   "company": {
+    "name": "Red Sun Transport & Movers Packers",
+    "nameAr": "رد صن للنقليات ونقل العفش",
+    "tagline": "Commercial & household relocation across the Gulf",
+    "crn": "",
+    "vat": "",
+    "phone": "+973 3935 0288",
+    "email": "info@redsunbh.com",
+    "address": "Umm Al Hassam, Manama, Bahrain",
+    "addressAr": "أم الحصم، المنامة، البحرين",
+    "hours": "24/7 commercial and household shifting",
+    "currency": "BHD",
+    "website": "",
+    "logo": "",
+    "managerName": "",
+    "managerPhone": "+973 3935 0288",
+    "coverage": [
+     "Bahrain",
+     "Qatar",
+     "Kuwait",
+     "Oman",
+     "UAE",
+     "Saudi Arabia"
+    ]
+   },
+   "smtp": {
+    "enabled": false,
+    "host": "",
+    "port": 587,
+    "secure": false,
+    "user": "",
+    "pass": "",
+    "fromName": "Red Sun Transport",
+    "fromEmail": "info@redsunbh.com",
+    "passSet": true
+   },
+   "whatsapp": {
+    "enabled": true,
+    "number": "+973 3935 0288"
+   },
+   "sms": {
+    "enabled": false
+   },
+   "features": {
+    "tracking": true,
+    "blog": true,
+    "alerts": true,
+    "documents": true,
+    "finance": true,
+    "ai": true,
+    "moves": true,
+    "whatsappNotify": true,
+    "emailNotify": true,
+    "smsNotify": false
+   },
+   "expenseCats": [],
+   "seo": {
+    "googleVerification": ""
+   }
+  }
  }
 }
