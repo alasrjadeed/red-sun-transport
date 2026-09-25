@@ -1857,6 +1857,7 @@ function TrackPage({ code }) {
 function FleetApp({ onBack }) {
   const [tab, setTab] = useState('dashboard')
   const [dash, setDash] = useState(null)
+  const [demo, setDemo] = useState(false)
   const [auth, setAuth] = useState({ loading: true, protected: false, ok: true })
 
   const checkAuth = () =>
@@ -1865,8 +1866,10 @@ function FleetApp({ onBack }) {
   useEffect(() => {
     checkAuth()
     const h = () => setAuth((a) => ({ ...a, ok: false }))
+    const d = () => setDemo(true)
     window.addEventListener('rs:unauthorized', h)
-    return () => window.removeEventListener('rs:unauthorized', h)
+    window.addEventListener('rs:demo', d)
+    return () => { window.removeEventListener('rs:unauthorized', h); window.removeEventListener('rs:demo', d) }
   }, [])
 
   const loadDash = () => api.dashboard().then(setDash).catch(() => null)
@@ -1899,6 +1902,7 @@ function FleetApp({ onBack }) {
           <div>
             <div className="kicker">Bahrain operations</div>
             <h2>{NAV.find((n) => n.id === tab)?.label}</h2>
+            {demo && <span className="badge">Preview — demo data (API offline)</span>}
           </div>
           <a className="btn btn-primary btn-sm" href="tel:+97339350288">Call Now +973 3935 0288</a>
         </div>

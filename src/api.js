@@ -1,5 +1,16 @@
 const TOKEN_KEY = 'rs_token'
 const headers = { 'Content-Type': 'application/json' }
+import { DEMO } from './demoData.js'
+
+function demoOf(path) {
+  const clean = path.split('?')[0]
+  return DEMO[clean] || null
+}
+
+function useDemo(d) {
+  if (typeof window !== 'undefined') window.dispatchEvent(new CustomEvent('rs:demo'))
+  return d?.clone ? d.clone() : structuredClone(d)
+}
 
 export function getToken() {
   try {
@@ -22,13 +33,27 @@ async function request(path, options = {}) {
   const h = { ...headers, ...(options.headers || {}) }
   const t = getToken()
   if (t) h.Authorization = `Bearer ${t}`
-  const res = await fetch(path, { ...options, headers: h })
+  const method = (options.method || 'GET').toUpperCase()
+  let res
+  try {
+    res = await fetch(path, { ...options, headers: h })
+  } catch (e) {
+    if (method === 'GET') {
+      const d = demoOf(path)
+      if (d) return useDemo(d)
+    }
+    throw e
+  }
   if (res.status === 401) {
     if (typeof window !== 'undefined') window.dispatchEvent(new CustomEvent('rs:unauthorized'))
     const err = await res.json().catch(() => ({ error: res.statusText }))
     throw new Error(err.error || 'Request failed')
   }
   if (!res.ok) {
+    if (method === 'GET') {
+      const d = demoOf(path)
+      if (d) return useDemo(d)
+    }
     const err = await res.json().catch(() => ({ error: res.statusText }))
     throw new Error(err.error || 'Request failed')
   }
